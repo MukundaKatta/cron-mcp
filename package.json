@@ -1,0 +1,57 @@
+{
+  "name": "@mukundakatta/cron-mcp",
+  "version": "0.1.0",
+  "mcpName": "io.github.MukundaKatta/cron",
+  "description": "MCP server: parse a cron expression and preview the next N run times.",
+  "type": "module",
+  "bin": {
+    "mcp-cron": "dist/server.js"
+  },
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "tsx src/server.ts",
+    "test": "node --test --import tsx test/*.test.ts",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "cursor",
+    "cline",
+    "windsurf",
+    "zed",
+    "cron",
+    "schedule"
+  ],
+  "author": "Mukunda Katta <mukunda.vjcs6@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/MukundaKatta/cron-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/MukundaKatta/cron-mcp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MukundaKatta/cron-mcp.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "cron-parser": "^5.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
