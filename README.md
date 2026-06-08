@@ -29,7 +29,7 @@ fire next. Backed by `cron-parser`. All times are UTC.
 }
 ```
 
-`n` defaults to 5 and is capped at 100.
+`n` defaults to 5 and must be an integer in `[1, 100]`; out-of-range values are rejected.
 
 ### `validate`
 

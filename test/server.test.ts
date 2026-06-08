@@ -39,3 +39,20 @@ test('rejects n out of range', () => {
   assert.throws(() => nextRuns('* * * * *', 0));
   assert.throws(() => nextRuns('* * * * *', 200));
 });
+
+test('rejects non-integer n', () => {
+  assert.throws(() => nextRuns('* * * * *', 2.5));
+  assert.throws(() => nextRuns('* * * * *', Number.NaN));
+});
+
+test('defaults to 5 runs', () => {
+  const r = nextRuns('* * * * *', undefined, new Date('2024-01-01T00:00:00Z'));
+  assert.equal(r.next.length, 5);
+  assert.equal(r.from, '2024-01-01T00:00:00.000Z');
+});
+
+test('next is interpreted in UTC regardless of host timezone', () => {
+  // 0 0 * * * fires at midnight UTC; assert the ISO output is exactly midnight Z.
+  const r = nextRuns('0 0 * * *', 1, new Date('2024-06-01T12:00:00Z'));
+  assert.equal(r.next[0], '2024-06-02T00:00:00.000Z');
+});

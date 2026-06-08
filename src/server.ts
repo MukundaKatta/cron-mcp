@@ -24,7 +24,7 @@ export interface NextResult {
 }
 
 export function nextRuns(expression: string, n = 5, from: Date = new Date()): NextResult {
-  if (n < 1 || n > 100) throw new Error('n must be in [1, 100]');
+  if (!Number.isInteger(n) || n < 1 || n > 100) throw new Error('n must be an integer in [1, 100]');
   const iter = CronExpressionParser.parse(expression, { currentDate: from, tz: 'UTC' });
   const next: string[] = [];
   for (let i = 0; i < n; i++) {
@@ -35,7 +35,7 @@ export function nextRuns(expression: string, n = 5, from: Date = new Date()): Ne
 
 export function validate(expression: string): { valid: true } | { valid: false; error: string } {
   try {
-    CronExpressionParser.parse(expression);
+    CronExpressionParser.parse(expression, { tz: 'UTC' });
     return { valid: true };
   } catch (e) {
     return { valid: false, error: (e as Error).message };
